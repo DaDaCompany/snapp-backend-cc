@@ -22,6 +22,11 @@ namespace Core
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
+        /// The name of the project 
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
         /// The Date when the project was created
         /// </summary>
         public DateTime CreatedAt { get; set; }
@@ -78,6 +83,21 @@ namespace Core
         /// </summary>
         [NotMapped]
         public ProjectStatusType Status { get; set; } = ProjectStatusType.Pending;
+
+        /// <summary>
+        /// The name of the street of the project location
+        /// </summary>
+        public string Street { get; set; }
+
+        /// <summary>
+        /// The Town of the project location
+        /// </summary>
+        public string Town { get; set; }
+
+        /// <summary>
+        /// The ZipCode of the project-adress
+        /// </summary>
+        public string ZipCode { get; set; }
 
         #endregion
 

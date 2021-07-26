@@ -251,14 +251,26 @@ namespace Entity.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Street")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Town")
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(36)");
+
+                    b.Property<string>("ZipCode")
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
