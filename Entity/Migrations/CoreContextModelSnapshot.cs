@@ -23,16 +23,16 @@ namespace Entity.Migrations
                         .HasMaxLength(36)
                         .HasColumnType("varchar(36)");
 
-                    b.Property<string>("City")
-                        .HasColumnType("longtext");
-
                     b.Property<string>("Country")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("PostalCode")
-                        .HasColumnType("int");
-
                     b.Property<string>("Street")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Town")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ZipCode")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -241,6 +241,9 @@ namespace Entity.Migrations
 
                     b.Property<string>("BillId")
                         .HasColumnType("varchar(36)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");

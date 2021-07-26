@@ -9,9 +9,7 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    /// <summary>
-    /// describes the address, no Interface "IAddress" needed
-    /// </summary>
+
     public class Address : IAddress
     {
 
@@ -29,19 +27,19 @@ namespace Core
         public string Street { get; set; }
 
         /// <summary>
-        /// describes the city
+        /// describes the country
         /// </summary>
-        public string City { get; set; }
+        public string Town { get; set; }
+
+        /// <summary>
+        /// The ZipCode of the project-adress
+        /// </summary>
+        public string ZipCode { get; set; }
 
         /// <summary>
         /// describes the country
         /// </summary>
         public string Country { get; set; }
-
-        /// <summary>
-        /// describes the PostalCode
-        /// </summary>
-        public int PostalCode { get; set; }
 
         #endregion
 
