@@ -99,6 +99,11 @@ namespace Core
         /// </summary>
         public string ZipCode { get; set; }
 
+        /// <summary>
+        /// describes the country of the project
+        /// </summary>
+        public string Country { get; set; }
+
         #endregion
 
         #region Private Properties

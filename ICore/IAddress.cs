@@ -27,17 +27,18 @@ namespace ICore
         /// <summary>
         /// describes the city
         /// </summary>
-        public string City { get; }
+        public string Town { get; }
+
+        /// <summary>
+        /// The ZipCode of the project-adress
+        /// </summary>
+        public string ZipCode { get; }
 
         /// <summary>
         /// describes the country
         /// </summary>
         public string Country { get; }
 
-        /// <summary>
-        /// describes the PostalCode
-        /// </summary>
-        public int PostalCode { get; }
 
         #endregion
 
