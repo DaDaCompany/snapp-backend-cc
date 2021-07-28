@@ -32,6 +32,10 @@ namespace ICore
         /// </summary>
         public string Password { get;  }
 
+        /// <summary>
+        /// the company where the user works
+        /// </summary>
+        public ICompany ICompany { get; }
         #endregion
 
         #region Private Properties

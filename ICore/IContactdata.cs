@@ -18,7 +18,7 @@ namespace ICore
         /// <summary>
         /// unique id of the contactdata
         /// </summary>
-        public string Id { get;  }
+        public string Id { get; }
 
         /// <summary>
         /// describes the address
@@ -28,17 +28,17 @@ namespace ICore
         /// <summary>
         /// describes the phonenumber
         /// </summary>
-        public string PhoneNumber { get;  }
+        public string PhoneNumber { get; }
 
         /// <summary>
         /// describes the Mobilephonenumber
         /// </summary>
-        public string MobileNumber { get;  }
+        public string MobileNumber { get; }
 
         /// <summary>
         /// describes the Email
         /// </summary>
-        public string Email { get;  }
+        public string Email { get; }
 
         #endregion
 

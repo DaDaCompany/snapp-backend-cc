@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -34,6 +35,13 @@ namespace Core
         /// the password of the user
         /// </summary>
         public string Password { get; set; }
+
+        /// <summary>
+        /// the company where the user works
+        /// </summary>
+        [NotMapped]
+        public ICompany ICompany => Company;
+        public Company Company { get; set; }
 
         #endregion
 

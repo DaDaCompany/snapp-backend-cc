@@ -42,7 +42,7 @@ namespace ICore
         /// <summary>
         /// user from the company""
         /// </summary>
-        public IUser IUsers { get; }
+        public IEnumerable<IUser> IUsers { get; }
 
         #endregion
 

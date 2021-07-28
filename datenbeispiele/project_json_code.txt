@@ -1,0 +1,42 @@
+post
+
+
+{
+    "Name": "Kesselbau",
+    "Street": "Färbergasse 15a",
+    "Town": "Dornbirn",
+    "ZipCode": "6850",
+    "Country": "Austria"
+}
+
+{
+    "Name": "Town N Country",
+    "Street": "Seestraße 25",
+    "Town": "Dornbirn",
+    "ZipCode": "6850",
+    "Country": "Austria"
+}
+
+{
+    "Name": "Town N Country",
+    "Street": "Seestraße 25",
+    "Town": "Dornbirn",
+    "ZipCode": "6850",
+    "Country": "Austria"
+}
+
+{
+    "Name": "Coding Campus",
+    "Street": "Färbergasse 15",
+    "Town": "Dornbirn",
+    "ZipCode": "6850",
+    "Country": "Austria"
+}
+
+{
+    "Name": "Digital Campus",
+    "Street": "Hinteregasse 15",
+    "Town": "Feldkirch",
+    "ZipCode": "6800",
+    "Country": "Austria"
+}

@@ -14,15 +14,28 @@ namespace Core
     {
 
         #region Public Properties
-        [MaxLength(36)]
+
+        /// <summary>
+        /// unique id of the contactdata
+        /// </summary>
         public string Id { get; set; } = Guid.NewGuid().ToString();
+
+        /// <summary>
+        /// Firstname of the Customer
+        /// </summary>
         public string Firstname { get; set; }
+
+        /// <summary>
+        /// Lastname of the Customer
+        /// </summary>
         public string Lastname { get; set; }
 
+        /// <summary>
+        /// The contactdata of the customer
+        /// </summary>
         [NotMapped]
         IContactdata ICustomer.IContactdata => this.Contactdata;
         public Contactdata Contactdata { get; set; }
-
 
         #endregion
 
