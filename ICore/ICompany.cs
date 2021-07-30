@@ -40,9 +40,14 @@ namespace ICore
         public IContactdata IContactdata { get; }
 
         /// <summary>
-        /// user from the company""
+        /// users from the company""
         /// </summary>
         public IEnumerable<IUser> IUsers { get; }
+        
+        /// <summary>
+        /// user from the company""
+        /// </summary>
+        //public IUser IUser { get; }
 
         #endregion
 

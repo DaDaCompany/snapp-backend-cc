@@ -36,6 +36,12 @@ namespace ICore
         /// </summary>
         public IContactdata IContactdata { get; }
 
+        /// <summary>
+        /// Project ID in which the article is used
+        /// </summary>
+        public IEnumerable<IProject> IProjects { get; }
+        //public IProject IProject { get; }
+
         #endregion
 
         #region Private Properties

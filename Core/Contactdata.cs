@@ -18,6 +18,7 @@ namespace Core
         /// <summary>
         /// the id of the contactdata
         /// </summary>
+        [Key]
         [MaxLength(36)]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 

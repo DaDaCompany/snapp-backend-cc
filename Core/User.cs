@@ -18,6 +18,7 @@ namespace Core
         /// <summary>
         /// the unique id of the position
         /// </summary>
+        [Key]
         [MaxLength(36)]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
@@ -41,7 +42,19 @@ namespace Core
         /// </summary>
         [NotMapped]
         public ICompany ICompany => Company;
+
         public Company Company { get; set; }
+
+        /// <summary>
+        /// Projects in which the user done work
+        /// </summary>
+        [NotMapped]
+        IEnumerable<IProject> IUser.IProjects => this.Projects;
+        public List<Project> Projects { get; set;} = new List<Project>();
+
+        //[NotMapped]
+        //public IProject IProject => Project;
+        //public Project Project { get; set; }
 
         #endregion
 
@@ -62,10 +75,10 @@ namespace Core
         public void GetUser() { }
 
         //Update User information
-        public void UpdateUser(){ }
+        public void UpdateUser() { }
 
         //delete a User from the database
-        public void DeleteUser(){ }
+        public void DeleteUser() { }
 
         #endregion
 

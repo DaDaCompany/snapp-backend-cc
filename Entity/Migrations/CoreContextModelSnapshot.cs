@@ -43,7 +43,8 @@ namespace Entity.Migrations
             modelBuilder.Entity("Core.Article", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(36)
+                        .HasColumnType("varchar(36)");
 
                     b.Property<string>("ArticleCategory")
                         .HasColumnType("longtext");
@@ -101,19 +102,15 @@ namespace Entity.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("BaseArticleId")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<double>("Discount")
                         .HasColumnType("double");
 
                     b.Property<string>("ProjectId")
-                        .HasColumnType("varchar(36)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BaseArticleId");
-
-                    b.HasIndex("ProjectId");
 
                     b.ToTable("ArticleHistory");
                 });
@@ -125,7 +122,7 @@ namespace Entity.Migrations
                         .HasColumnType("varchar(36)");
 
                     b.Property<string>("CustomerId")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("varchar(36)");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime(6)");
@@ -146,7 +143,8 @@ namespace Entity.Migrations
             modelBuilder.Entity("Core.Company", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(36)
+                        .HasColumnType("varchar(36)");
 
                     b.Property<string>("ContactdataId")
                         .HasColumnType("varchar(36)");
@@ -195,7 +193,8 @@ namespace Entity.Migrations
             modelBuilder.Entity("Core.Customer", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(36)
+                        .HasColumnType("varchar(36)");
 
                     b.Property<string>("ContactdataId")
                         .HasColumnType("varchar(36)");
@@ -232,7 +231,7 @@ namespace Entity.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("CustomerId")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("varchar(36)");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime(6)");
@@ -252,9 +251,6 @@ namespace Entity.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("varchar(36)");
-
                     b.Property<string>("ZipCode")
                         .HasColumnType("longtext");
 
@@ -266,8 +262,6 @@ namespace Entity.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("ProjectList");
                 });
 
@@ -278,16 +272,13 @@ namespace Entity.Migrations
                         .HasColumnType("varchar(36)");
 
                     b.Property<string>("CompanyId")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("varchar(36)");
 
                     b.Property<string>("Email")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Password")
                         .HasColumnType("longtext");
-
-                    b.Property<string>("ProjectId")
-                        .HasColumnType("varchar(36)");
 
                     b.Property<string>("Username")
                         .HasColumnType("longtext");
@@ -296,9 +287,22 @@ namespace Entity.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.HasIndex("ProjectId");
-
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("ProjectUser", b =>
+                {
+                    b.Property<string>("ProjectsId")
+                        .HasColumnType("varchar(36)");
+
+                    b.Property<string>("UsersId")
+                        .HasColumnType("varchar(36)");
+
+                    b.HasKey("ProjectsId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("ProjectUser");
                 });
 
             modelBuilder.Entity("Core.Article", b =>
@@ -306,21 +310,6 @@ namespace Entity.Migrations
                     b.HasOne("Core.ArticleHistory", null)
                         .WithMany("BaseArticles")
                         .HasForeignKey("ArticleHistoryId");
-                });
-
-            modelBuilder.Entity("Core.ArticleHistory", b =>
-                {
-                    b.HasOne("Core.Article", "BaseArticle")
-                        .WithMany()
-                        .HasForeignKey("BaseArticleId");
-
-                    b.HasOne("Core.Project", "Project")
-                        .WithMany()
-                        .HasForeignKey("ProjectId");
-
-                    b.Navigation("BaseArticle");
-
-                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("Core.Bill", b =>
@@ -370,18 +359,12 @@ namespace Entity.Migrations
                         .HasForeignKey("BillId");
 
                     b.HasOne("Core.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("Projects")
                         .HasForeignKey("CustomerId");
-
-                    b.HasOne("Core.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
 
                     b.Navigation("Bill");
 
                     b.Navigation("Customer");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Core.User", b =>
@@ -390,11 +373,22 @@ namespace Entity.Migrations
                         .WithMany("Users")
                         .HasForeignKey("CompanyId");
 
-                    b.HasOne("Core.Project", null)
-                        .WithMany("Users")
-                        .HasForeignKey("ProjectId");
-
                     b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("ProjectUser", b =>
+                {
+                    b.HasOne("Core.Project", null)
+                        .WithMany()
+                        .HasForeignKey("ProjectsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Core.ArticleHistory", b =>
@@ -409,9 +403,9 @@ namespace Entity.Migrations
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("Core.Project", b =>
+            modelBuilder.Entity("Core.Customer", b =>
                 {
-                    b.Navigation("Users");
+                    b.Navigation("Projects");
                 });
 #pragma warning restore 612, 618
         }

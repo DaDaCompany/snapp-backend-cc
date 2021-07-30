@@ -18,6 +18,8 @@ namespace Core
         /// <summary>
         /// unique id for the company
         /// </summary>
+        [Key]
+        [MaxLength(36)]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
@@ -43,11 +45,23 @@ namespace Core
         public Contactdata Contactdata { get; set; }
 
         /// <summary>
-        /// user from the company""
+        /// userlist from the company""
         /// </summary>
         [NotMapped]
-        public IEnumerable<IUser> IUsers => this.Users;
-        public IEnumerable<User> Users { get; set; }
+        IEnumerable<IUser> ICompany.IUsers => this.Users;
+        public List<User> Users { get; set; } = new List<User>();
+
+        /// <summary>
+        /// user from the company""
+        /// </summary>
+        //[NotMapped]
+        //public IUser IUser => User;
+        //public User User { get; set; }
+
+        ///// <summary>
+        ///// Project ID in which the article is used
+        ///// </summary>
+        //public IProject IProject { get; } /// needs the company a list of projects?
 
         #endregion
 

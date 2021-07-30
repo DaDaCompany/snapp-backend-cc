@@ -42,6 +42,15 @@ namespace Snapp.WebAPI.Controllers
             return articleHistory;
         }
 
+        // GET: api/ArticleHistories/5
+        [HttpGet("getbyprojectid/{id}")]
+        public async Task<ActionResult<List<ArticleHistory>>> GetArticlesByProjectId(string id)
+        {
+
+            return await _context.ArticleHistory.Where(s => s.ProjectId == id).ToListAsync();
+
+        }
+
         // PUT: api/ArticleHistories/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -75,28 +84,63 @@ namespace Snapp.WebAPI.Controllers
 
         // POST: api/ArticleHistories
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<ArticleHistory>> PostArticleHistory(ArticleHistory articleHistory)
+        [HttpPost("add")]
+        public async Task<ActionResult> PostArticleHistory(ArticleHistory articleHistory)
         {
-            _context.ArticleHistory.Add(articleHistory);
-            try
+
+            // the articlelist which matched with the projectId
+            var proofeArticles = await _context.ArticleHistory.Where(s => s.ProjectId == articleHistory.ProjectId).ToListAsync();
+
+            //var proofeArticles = await _context.ArticleHistory.Where(s => s.BaseArticleId == articleHistory.BaseArticleId).ToListAsync();
+
+            if (proofeArticles.Count > 0)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (ArticleHistoryExists(articleHistory.Id))
+                foreach (var proofeArticle in proofeArticles)
                 {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
+                    if (proofeArticle.BaseArticleId == articleHistory.BaseArticleId)
+                    {
+
+                        // proofe the articlevalues
+                        if (
+                            proofeArticle.ArticleName == articleHistory.ArticleName &&
+                            proofeArticle.ArticleDescription == articleHistory.ArticleDescription &&
+                            proofeArticle.ArticlePricePerUnit == articleHistory.ArticlePricePerUnit &&
+                            proofeArticle.ArticleUnitMeasurement == articleHistory.ArticleUnitMeasurement &&
+                            proofeArticle.ArticleCategory == articleHistory.ArticleCategory &&
+                            proofeArticle.ArticleTaxRate == articleHistory.ArticleTaxRate &&
+                            proofeArticle.Discount == articleHistory.Discount)
+                        {
+                            proofeArticle.Amount += articleHistory.Amount;
+
+                            //use the put-update-method to change the articlevalues
+                            await PutArticleHistory(proofeArticle.Id, proofeArticle);
+                            return Ok("Article updated successfully!");
+                        }
+                    }
                 }
             }
 
-            return CreatedAtAction("GetArticleHistory", new { id = articleHistory.Id }, articleHistory);
+            //add an article
+            _context.ArticleHistory.Add(articleHistory);
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    return Ok("Article added successfully!");
+                
+                }
+                catch (DbUpdateException)
+                {
+                    if (ArticleHistoryExists(articleHistory.Id))
+                    {
+                        return Conflict();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
         }
+
 
         // DELETE: api/ArticleHistories/5
         [HttpDelete("{id}")]

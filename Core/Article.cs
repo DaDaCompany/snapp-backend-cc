@@ -17,6 +17,8 @@ namespace Core
         /// <summary>
         /// unique id of the article
         /// </summary>
+        [Key]
+        [MaxLength(36)]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>

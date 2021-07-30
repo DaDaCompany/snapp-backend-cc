@@ -14,6 +14,7 @@ namespace Core
         /// <summary>
         /// The id of the Bill
         /// </summary>
+        [Key]
         [MaxLength(36)]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
@@ -36,9 +37,14 @@ namespace Core
         /// the customer of the project for the bill
         /// </summary>
         [NotMapped]
-        ICustomer IBill.ICustomer => (ICustomer)Customer;
+        ICustomer IBill.ICustomer => this.Customer;
         public Customer Customer { get; set; }
-        public string CustomerId { get; set; }
+
+        ///// <summary>
+        ///// Project ID in which the article is used
+        ///// </summary>
+        //IProject IBill.IProject => this.Project;
+        //public Project Project { get; set; }
 
     }
 }

@@ -1,0 +1,12 @@
+{
+  "projectId": "83dd015c-3e86-429a-96fa-8ab859173688",
+  "baseArticleId": "da47e401-0daf-4c80-a7c2-5e72e58bafa1",
+  "articleName": "Schraube",
+  "articleDescription": "Ich bin eine Beschreibung ",
+  "articlePricePerUnit": 0.28,
+  "articleUnitMeasurement": "stk",
+  "articleCategory": 0,
+  "articleTaxRate": 20,
+  "amount": 1,
+  "discount": 0
+}

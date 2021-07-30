@@ -36,7 +36,11 @@ namespace ICore
         /// <summary>
         /// the customer of the project for the bill
         /// </summary>
-        [NotMapped]
         public ICustomer ICustomer { get; }
+
+        /// <summary>
+        /// Project ID in which the article is used
+        /// </summary>
+        //public IProject IProject { get; }
     }
 }
