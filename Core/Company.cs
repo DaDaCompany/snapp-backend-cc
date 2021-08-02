@@ -14,20 +14,54 @@ namespace Core
     {
 
         #region Public Properties
+
+        /// <summary>
+        /// unique id for the company
+        /// </summary>
+        [Key]
         [MaxLength(36)]
         public string Id { get; set; } = Guid.NewGuid().ToString();
+
+        /// <summary>
+        /// path of the company-logo
+        /// </summary>
         public string Logo { get; set; }
+
+        /// <summary>
+        /// Name of the company
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// paymentridge of the company
+        /// </summary>
         public int PaymentRidge { get; set; }
 
-
+        /// <summary>
+        /// Contactdata of the company
+        /// </summary>
         [NotMapped]
         IContactdata ICompany.IContactdata => this.Contactdata;
         public Contactdata Contactdata { get; set; }
 
+        /// <summary>
+        /// userlist from the company""
+        /// </summary>
         [NotMapped]
-        IUser ICompany.IUsers => this.Users;
-        public User Users { get; set; }
+        IEnumerable<IUser> ICompany.IUsers => this.Users;
+        public List<User> Users { get; set; } = new List<User>();
+
+        /// <summary>
+        /// user from the company""
+        /// </summary>
+        //[NotMapped]
+        //public IUser IUser => User;
+        //public User User { get; set; }
+
+        ///// <summary>
+        ///// Project ID in which the article is used
+        ///// </summary>
+        //public IProject IProject { get; } /// needs the company a list of projects?
 
         #endregion
 
@@ -43,13 +77,13 @@ namespace Core
         public void CreateCompany(string logo, string name, int paymentRidge, IContactdata iContactdata, IUser iUsers) { }
 
         //find/get a specific Company
-        public void GetCompany(string id){}
+        public void GetCompany(string id) { }
 
         //Update Company information
-        public void UpdateCompany(string logo, int paymentRidge, IContactdata iContactdata, IUser iUsers){}
+        public void UpdateCompany(string logo, int paymentRidge, IContactdata iContactdata, IUser iUsers) { }
 
         //delete a Company from the database
-        public void DeleteCompany(){}
+        public void DeleteCompany() { }
         #endregion
 
         #region Private Methods

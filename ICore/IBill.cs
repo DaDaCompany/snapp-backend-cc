@@ -11,26 +11,36 @@ namespace ICore
 {
     public interface IBill
     {
+        /// <summary>
+        /// The id of the Bill
+        /// </summary>
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [MaxLength(36)]
         public string Id { get; }
-        public DateTime CreatedAt { get; }
-        public DateTime UpdatedAt { get; }
+
+        /// <summary>
+        /// the name of the project for the bill
+        /// </summary>
         public string Name { get; }
-        public string BillId { get; }
+
+        /// <summary>
+        /// the start date of the project
+        /// </summary>
         public DateTime StartDate { get; }
+
+        /// <summary>
+        /// the enddate of the project for the bill
+        /// </summary>
         public DateTime EndDate { get; }
 
-        //single relationship from Project to Customer
-        [NotMapped]
+        /// <summary>
+        /// the customer of the project for the bill
+        /// </summary>
         public ICustomer ICustomer { get; }
 
         /// <summary>
-        /// The statustype of a project
-        /// (options: IsPaid, Pending, Overdue, WarnedOff, Incaso)
-        /// default: "Pending"
+        /// Project ID in which the article is used
         /// </summary>
-        [NotMapped]
-        public ProjectStatusType Status { get; }
+        //public IProject IProject { get; }
     }
 }

@@ -14,15 +14,41 @@ namespace Core
     {
 
         #region Public Properties
+
+        /// <summary>
+        /// unique id of the contactdata
+        /// </summary>
+        [Key]
         [MaxLength(36)]
         public string Id { get; set; } = Guid.NewGuid().ToString();
+
+        /// <summary>
+        /// Firstname of the Customer
+        /// </summary>
         public string Firstname { get; set; }
+
+        /// <summary>
+        /// Lastname of the Customer
+        /// </summary>
         public string Lastname { get; set; }
 
+        /// <summary>
+        /// The contactdata of the customer
+        /// </summary>
         [NotMapped]
         IContactdata ICustomer.IContactdata => this.Contactdata;
         public Contactdata Contactdata { get; set; }
 
+        /// <summary>
+        /// Project ID in which the article is used
+        /// </summary>
+        [NotMapped]
+        IEnumerable<IProject> ICustomer.IProjects => this.Projects;
+        public List<Project> Projects { get; set; } = new List<Project>();
+
+        //[NotMapped]
+        //public IProject IProject => this.Project;
+        //public Project Project { get; set; }
 
         #endregion
 
@@ -34,16 +60,16 @@ namespace Core
         #region Public Methods
 
         //create a new Customer
-        public void CreateCustomer(){}
+        public void CreateCustomer() { }
 
         //find/get a specific Customer
-        public void GetCustomer(){}
+        public void GetCustomer() { }
 
         //Update Customer information
-        public void UpdateCustomer(){}
+        public void UpdateCustomer() { }
 
         //delete a Customer from the database
-        public void DeleteCustomer() {}
+        public void DeleteCustomer() { }
 
         #endregion
 

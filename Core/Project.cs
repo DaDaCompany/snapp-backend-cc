@@ -18,6 +18,7 @@ namespace Core
         /// <summary>
         /// The Unique ID of the Project
         /// </summary>
+        [Key]
         [MaxLength(36)]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
@@ -40,7 +41,7 @@ namespace Core
         /// The Bill of the whole Project
         /// </summary>
         [NotMapped]
-        IBill IProject.IBill => (IBill)Bill;
+        IBill IProject.IBill => this.Bill;
         public Bill Bill { get; set; }
 
         /// <summary>
@@ -67,16 +68,16 @@ namespace Core
         //public IUser ILeader => Leader;
         //public User Leader { get; set; }
 
-        /// <summary>
-        /// the users of the project
-        /// </summary>
+        ///// <summary>
+        ///// the users of the project
+        ///// </summary>
         [NotMapped]
-        public IEnumerable<IUser> IUsers => Users;
+        IEnumerable<IUser> IProject.IUsers => this.Users;
         public List<User> Users { get; set; } = new List<User>();
 
-        [NotMapped]
-        public IUser IUser => User;
-        public User User { get; set; }
+        //[NotMapped]
+        //public IUser IUser => User;
+        //public User User { get; set; }
 
         /// <summary>
         /// the project status

@@ -19,32 +19,34 @@ namespace Core
         /// <summary>
         /// the unique id of the position
         /// </summary>
-
+        [Key]
         [MaxLength(36)]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
-        /// The project ID in which the article is used
+        /// The projects in which the article is used
         /// </summary>
+        //[Required]
         [NotMapped]
         public IEnumerable<IProject> IProjects => this.Projects;
         public List<Project> Projects { get; set; } = new List<Project>();
 
-        [NotMapped]
-        //public IProject IProject { get; set; }
-        public IProject IProject => Project;
-        public Project Project { get; set; }
+        /// <summary>
+        /// The project ID in which the article is used
+        /// </summary>
+        public string ProjectId { get; set; }
 
         /// <summary>
-        /// the base article id from the companys article list
+        /// the base article from the companys article list
         /// </summary>
         [NotMapped]
         public IEnumerable<IArticle> IBaseArticles => this.BaseArticles;
         public List<Article> BaseArticles { get; set; } = new List<Article>();
 
-        [NotMapped]
-        public IArticle IBaseArticle => BaseArticle;
-        public Article BaseArticle { get; set; }
+        /// <summary>
+        /// the base article id from the company
+        /// </summary>
+        public string BaseArticleId { get; set; }
 
         /// <summary>
         /// the name of the article when added to the project

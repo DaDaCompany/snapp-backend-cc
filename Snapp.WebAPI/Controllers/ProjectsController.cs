@@ -29,7 +29,7 @@ namespace Snapp.WebAPI.Controllers
         }
 
         // GET: api/Projects/5
-        [HttpGet("getprojectbyid")]
+        [HttpGet("getprojectbyid/{id}")]
         public async Task<ActionResult<Project>> GetProject(string id)
         {
             var project = await _context.ProjectList.FindAsync(id);
@@ -75,7 +75,7 @@ namespace Snapp.WebAPI.Controllers
 
         // POST: api/Projects
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost("add/")]
+        [HttpPost("add")]
         public async Task<ActionResult<Project>> PostProject(Project project)
         {
             _context.ProjectList.Add(project);

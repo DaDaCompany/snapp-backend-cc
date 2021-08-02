@@ -32,6 +32,17 @@ namespace ICore
         /// </summary>
         public string Password { get;  }
 
+        /// <summary>
+        /// the company where the user works
+        /// </summary>
+        public ICompany ICompany { get; }
+
+        /// <summary>
+        /// Project ID in which the article is used
+        /// </summary>
+        public IEnumerable<IProject> IProjects { get; }
+        //public IProject IProject { get; }
+
         #endregion
 
         #region Private Properties

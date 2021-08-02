@@ -25,14 +25,18 @@ namespace ICore
         /// <summary>
         /// Project ID in which the article is used
         /// </summary>
-        public IProject IProject { get; }
         public IEnumerable<IProject> IProjects { get; }
+        public string ProjectId { get; }
+
+        /// <summary>
+        /// the base article list from the company article list
+        /// </summary>
+        public IEnumerable<IArticle> IBaseArticles { get; }
 
         /// <summary>
         /// the base article id from the company article list
         /// </summary>
-        public IArticle IBaseArticle { get; }
-        public IEnumerable<IArticle> IBaseArticles { get; }
+        public string BaseArticleId { get; }
 
         /// <summary>
         /// the name of the article when added to the project

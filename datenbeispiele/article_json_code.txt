@@ -1,0 +1,35 @@
+{
+  "name": "Schraube",
+  "description": "Ich bin eine Schraube!",
+  "pricePerUnit": 0.28,
+  "unitMeasurement": "stk",
+  "articleCategory": "Scrauben",
+  "taxRate": 20
+}
+
+{
+  "name": "Arctic Weiß",
+  "description": "deckende Arctic Weiß Farbe",
+  "pricePerUnit": 6.49,
+  "unitMeasurement": "L",
+  "articleCategory": "Farben",
+  "taxRate": 20
+}
+
+{
+  "name": "Arctic Blau",
+  "description": "deckende Arctic BlauFarbe",
+  "pricePerUnit": 4.49,
+  "unitMeasurement": "L",
+  "articleCategory": "Farben",
+  "taxRate": 20
+}
+
+{
+  "name": "Wandfarbe Grün",
+  "description": "deckende Wandfarbe in Grün",
+  "pricePerUnit": 3.49,
+  "unitMeasurement": "L",
+  "articleCategory": "Farben",
+  "taxRate": 20
+}

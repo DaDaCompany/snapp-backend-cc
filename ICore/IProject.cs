@@ -55,7 +55,7 @@ namespace ICore
         /// <summary>
         /// the leader/responsible Person of the project
         /// </summary>
-        public IUser IUser { get; }
+        //public IUser IUser { get; }
         public IEnumerable<IUser> IUsers { get; }
 
         /// <summary>
@@ -82,19 +82,6 @@ namespace ICore
         /// describes the country
         /// </summary>
         public string Country { get; }
-
-        //public int BillId { get;  }
-        //public ICompany Company { get;  }
-        //public int ProjectId { get;  }
-        //public string BillNumber { get;  }
-        //public DateTime BillDate { get;  }
-        //public ICustomer Customer { get;  }
-        //public IService Service { get;  }
-        //public IMaterial Material { get;  }
-        //public int TaxRate { get;  }
-        //public double IntermediatePrice { get;  }
-        //public double TotalCost { get;  }
-        //public string Employee { get;  }
 
         #endregion
 
