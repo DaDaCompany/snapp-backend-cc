@@ -22,8 +22,6 @@ namespace Core
         [MaxLength(36)]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
-
-
         /// <summary>
         /// the addressList of the contactdatas
         /// </summary>

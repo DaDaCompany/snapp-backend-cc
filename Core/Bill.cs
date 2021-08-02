@@ -37,8 +37,13 @@ namespace Core
         /// the customer of the project for the bill
         /// </summary>
         [NotMapped]
-        ICustomer IBill.ICustomer => this.Customer;
-        public Customer Customer { get; set; }
+        public IEnumerable<ICustomer> ICustomers => Customers;
+        public List<Customer> Customers { get; set; }
+
+        /// <summary>
+        /// describes the id of the customer
+        /// </summary>
+        public string CustomerId { get; set; }
 
         ///// <summary>
         ///// Project ID in which the article is used

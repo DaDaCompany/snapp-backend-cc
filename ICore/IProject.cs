@@ -45,7 +45,12 @@ namespace ICore
         /// <summary>
         /// The associated Customer of the project
         /// </summary>
-        public ICustomer ICustomer { get; }
+        public IEnumerable<ICustomer> ICustomers { get; }
+
+        /// <summary>
+        /// describes the id of the customer
+        /// </summary>
+        public string CustomerId { get; }
 
         /// <summary>
         /// the leader/responsible Person of the project
@@ -53,10 +58,15 @@ namespace ICore
         //public IUser ILeader { get; }
 
         /// <summary>
-        /// the leader/responsible Person of the project
+        /// the responsible workers of the project
         /// </summary>
         //public IUser IUser { get; }
         public IEnumerable<IUser> IUsers { get; }
+
+        /// <summary>
+        /// the userId of the employee which done work in the project
+        /// </summary>
+        public string UserId { get; }
 
         /// <summary>
         /// the status of the project/bill
