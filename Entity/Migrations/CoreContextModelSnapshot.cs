@@ -142,7 +142,7 @@ namespace Entity.Migrations
                         .HasColumnType("varchar(36)");
 
                     b.Property<string>("CustomerId")
-                        .HasColumnType("varchar(36)");
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime(6)");
@@ -154,8 +154,6 @@ namespace Entity.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
 
                     b.ToTable("Bill");
                 });
@@ -222,6 +220,9 @@ namespace Entity.Migrations
                         .HasMaxLength(36)
                         .HasColumnType("varchar(36)");
 
+                    b.Property<string>("BillId")
+                        .HasColumnType("varchar(36)");
+
                     b.Property<string>("ContactdataId")
                         .HasColumnType("longtext");
 
@@ -235,6 +236,8 @@ namespace Entity.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BillId");
 
                     b.ToTable("Customers");
                 });
@@ -277,6 +280,9 @@ namespace Entity.Migrations
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ZipCode")
                         .HasColumnType("longtext");
@@ -372,15 +378,6 @@ namespace Entity.Migrations
                         .HasForeignKey("ArticleHistoryId");
                 });
 
-            modelBuilder.Entity("Core.Bill", b =>
-                {
-                    b.HasOne("Core.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId");
-
-                    b.Navigation("Customer");
-                });
-
             modelBuilder.Entity("Core.Company", b =>
                 {
                     b.HasOne("Core.Contactdata", "Contactdata")
@@ -395,6 +392,13 @@ namespace Entity.Migrations
                     b.HasOne("Core.Customer", null)
                         .WithMany("Contactdata")
                         .HasForeignKey("CustomerId");
+                });
+
+            modelBuilder.Entity("Core.Customer", b =>
+                {
+                    b.HasOne("Core.Bill", null)
+                        .WithMany("Customers")
+                        .HasForeignKey("BillId");
                 });
 
             modelBuilder.Entity("Core.Project", b =>
@@ -445,6 +449,11 @@ namespace Entity.Migrations
                     b.Navigation("BaseArticles");
 
                     b.Navigation("Projects");
+                });
+
+            modelBuilder.Entity("Core.Bill", b =>
+                {
+                    b.Navigation("Customers");
                 });
 
             modelBuilder.Entity("Core.Contactdata", b =>

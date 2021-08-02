@@ -36,7 +36,12 @@ namespace ICore
         /// <summary>
         /// the customer of the project for the bill
         /// </summary>
-        public ICustomer ICustomer { get; }
+        public IEnumerable<ICustomer> ICustomers { get; }
+
+        /// <summary>
+        /// describes the id of the customer
+        /// </summary>
+        public string CustomerId { get; set; }
 
         /// <summary>
         /// Project ID in which the article is used

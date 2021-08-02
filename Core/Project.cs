@@ -58,7 +58,7 @@ namespace Core
         /// The associated Customer of the project
         /// </summary>
         [NotMapped]
-        public IEnumerable<ICustomer> ICustomers { get; }
+        public IEnumerable<ICustomer> ICustomers => Customers;
         public List<Customer> Customers { get; set; }
 
         /// <summary>
@@ -80,9 +80,7 @@ namespace Core
         IEnumerable<IUser> IProject.IUsers => this.Users;
         public List<User> Users { get; set; } = new List<User>();
 
-        //[NotMapped]
-        //public IUser IUser => User;
-        //public User User { get; set; }
+        public string UserId { get; set; }
 
         /// <summary>
         /// the project status
