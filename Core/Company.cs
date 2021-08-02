@@ -41,8 +41,13 @@ namespace Core
         /// Contactdata of the company
         /// </summary>
         [NotMapped]
-        IContactdata ICompany.IContactdata => this.Contactdata;
+        public IContactdata IContactdata => Contactdata;
         public Contactdata Contactdata { get; set; }
+
+        /// <summary>
+        /// The contactdataId of the company
+        /// </summary>
+        public string ContactdataId { get; set; }
 
         /// <summary>
         /// userlist from the company""
@@ -51,10 +56,6 @@ namespace Core
         IEnumerable<IUser> ICompany.IUsers => this.Users;
         public List<User> Users { get; set; } = new List<User>();
 
-        /// <summary>
-        /// describes the users-Ids of the company
-        /// </summary>
-        public string UserId { get; set; }
 
         /// <summary>
         /// user from the company""

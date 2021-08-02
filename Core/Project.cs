@@ -38,11 +38,12 @@ namespace Core
         public DateTime UpdatedAt { get; set; }
 
         /// <summary>
-        /// The Bill of the whole Project
+        /// the id of the associated bill
         /// </summary>
         [NotMapped]
-        IBill IProject.IBill => this.Bill;
+        public IBill IBill => Bill;
         public Bill Bill { get; set; }
+        public string BillId { get; set; }
 
         /// <summary>
         /// The startdate of the project
@@ -58,20 +59,9 @@ namespace Core
         /// The associated Customer of the project
         /// </summary>
         [NotMapped]
-        public IEnumerable<ICustomer> ICustomers => Customers;
-        public List<Customer> Customers { get; set; }
-
-        /// <summary>
-        /// describes the id of the customer
-        /// </summary>
+        public ICustomer ICustomer => Customer;
+        public Customer Customer { get; set; }
         public string CustomerId { get; set; }
-
-        /// <summary>
-        /// the leader/responsible Person of the project
-        /// </summary>
-        //[NotMapped]
-        //public IUser ILeader => Leader;
-        //public User Leader { get; set; }
 
         ///// <summary>
         ///// the users of the project
@@ -79,8 +69,6 @@ namespace Core
         [NotMapped]
         IEnumerable<IUser> IProject.IUsers => this.Users;
         public List<User> Users { get; set; } = new List<User>();
-
-        public string UserId { get; set; }
 
         /// <summary>
         /// the project status

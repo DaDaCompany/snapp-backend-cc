@@ -34,7 +34,7 @@ namespace ICore
         /// <summary>
         /// The contactdata of the customer
         /// </summary>
-        public IEnumerable<IContactdata> IContactdata { get; }
+        public IContactdata IContactdata { get; }
         /// <summary>
         /// The contactdataId of the customer
         /// </summary>
@@ -45,10 +45,10 @@ namespace ICore
         /// </summary>
         public IEnumerable<IProject> IProjects { get; }
 
-        /// <summary>
-        /// Project ID in which the article is used
-        /// </summary>
-        public string ProjectId { get; }
+        ///// <summary>
+        ///// Project ID in which the article is used
+        ///// </summary>
+        //public string ProjectId { get; }
 
         #endregion
 

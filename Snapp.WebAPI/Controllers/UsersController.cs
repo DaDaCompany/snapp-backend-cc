@@ -10,49 +10,49 @@ using Entity;
 
 namespace Snapp.WebAPI.Controllers
 {
-    [Route("api/customers/")]
+    [Route("api/users/")]
     [ApiController]
-    public class CustomersController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly CoreContext _context;
 
-        public CustomersController(CoreContext context)
+        public UsersController(CoreContext context)
         {
             _context = context;
         }
 
-        // GET: api/Customers
+        // GET: api/Users
         [HttpGet("getall")]
-        public async Task<ActionResult<IEnumerable<Customer>>> GetCustomers()
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await _context.Customers.ToListAsync();
+            return await _context.Users.ToListAsync();
         }
 
-        // GET: api/Customers/5
+        // GET: api/Users/5
         [HttpGet("getbyid/{id}")]
-        public async Task<ActionResult<Customer>> GetCustomer(string id)
+        public async Task<ActionResult<User>> GetUser(string id)
         {
-            var customer = await _context.Customers.FindAsync(id);
+            var user = await _context.Users.FindAsync(id);
 
-            if (customer == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return customer;
+            return user;
         }
 
-        // PUT: api/Customers/5
+        // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("updatebyid/{id}")]
-        public async Task<IActionResult> PutCustomer(string id, Customer customer)
+        public async Task<IActionResult> PutUser(string id, User user)
         {
-            if (id != customer.Id)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(customer).State = EntityState.Modified;
+            _context.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace Snapp.WebAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CustomerExists(id))
+                if (!UserExists(id))
                 {
                     return NotFound();
                 }
@@ -73,19 +73,19 @@ namespace Snapp.WebAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Customers
+        // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("add")]
-        public async Task<ActionResult<Customer>> PostCustomer(Customer customer)
+        public async Task<ActionResult<User>> PostUser(User user)
         {
-            _context.Customers.Add(customer);
+            _context.Users.Add(user);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (CustomerExists(customer.Id))
+                if (UserExists(user.Id))
                 {
                     return Conflict();
                 }
@@ -95,28 +95,28 @@ namespace Snapp.WebAPI.Controllers
                 }
             }
 
-            return CreatedAtAction("GetCustomer", new { id = customer.Id }, customer);
+            return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
-        // DELETE: api/Customers/5
+        // DELETE: api/Users/5
         [HttpDelete("deletebyid/{id}")]
-        public async Task<IActionResult> DeleteCustomer(string id)
+        public async Task<IActionResult> DeleteUser(string id)
         {
-            var customer = await _context.Customers.FindAsync(id);
-            if (customer == null)
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            _context.Customers.Remove(customer);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool CustomerExists(string id)
+        private bool UserExists(string id)
         {
-            return _context.Customers.Any(e => e.Id == id);
+            return _context.Users.Any(e => e.Id == id);
         }
     }
 }

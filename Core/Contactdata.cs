@@ -26,13 +26,13 @@ namespace Core
         /// the addressList of the contactdatas
         /// </summary>
         [NotMapped]
-        public IEnumerable<IAddress> IAddress => this.Address;
-        public List<Address> Address { get; set; }
+        public IAddress IAddress => this.Address;
+        public Address Address { get; set; }
 
         /// <summary>
         /// describes the addressId
         /// </summary>
-        public string AdressId { get; set; }
+        public string AddressId { get; set; }
 
         /// <summary>
         /// the phonenumber of the contactdata

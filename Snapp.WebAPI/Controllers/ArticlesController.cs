@@ -10,7 +10,7 @@ using Entity;
 
 namespace Snapp.WebAPI.Controllers
 {
-    [Route("api/articles")]
+    [Route("api/articles/")]
     [ApiController]
     public class ArticlesController : ControllerBase
     {

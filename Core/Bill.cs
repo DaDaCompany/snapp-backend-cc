@@ -37,8 +37,8 @@ namespace Core
         /// the customer of the project for the bill
         /// </summary>
         [NotMapped]
-        public IEnumerable<ICustomer> ICustomers => Customers;
-        public List<Customer> Customers { get; set; }
+        public ICustomer ICustomer => Customer;
+        public Customer Customer { get; set; }
 
         /// <summary>
         /// describes the id of the customer
