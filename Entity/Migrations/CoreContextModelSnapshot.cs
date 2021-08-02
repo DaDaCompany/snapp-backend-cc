@@ -258,7 +258,7 @@ namespace Entity.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("CustomerId")
-                        .HasColumnType("varchar(36)");
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime(6)");
@@ -287,8 +287,6 @@ namespace Entity.Migrations
 
                     b.HasIndex("BillId");
 
-                    b.HasIndex("CustomerId");
-
                     b.ToTable("ProjectList");
                 });
 
@@ -313,6 +311,21 @@ namespace Entity.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("CustomerProject", b =>
+                {
+                    b.Property<string>("CustomersId")
+                        .HasColumnType("varchar(36)");
+
+                    b.Property<string>("ProjectsId")
+                        .HasColumnType("varchar(36)");
+
+                    b.HasKey("CustomersId", "ProjectsId");
+
+                    b.HasIndex("ProjectsId");
+
+                    b.ToTable("CustomerProject");
                 });
 
             modelBuilder.Entity("ProjectUser", b =>
@@ -394,13 +407,22 @@ namespace Entity.Migrations
                         .WithMany()
                         .HasForeignKey("BillId");
 
-                    b.HasOne("Core.Customer", "Customer")
-                        .WithMany("Projects")
-                        .HasForeignKey("CustomerId");
-
                     b.Navigation("Bill");
+                });
 
-                    b.Navigation("Customer");
+            modelBuilder.Entity("CustomerProject", b =>
+                {
+                    b.HasOne("Core.Customer", null)
+                        .WithMany()
+                        .HasForeignKey("CustomersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Project", null)
+                        .WithMany()
+                        .HasForeignKey("ProjectsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ProjectUser", b =>
@@ -433,8 +455,6 @@ namespace Entity.Migrations
             modelBuilder.Entity("Core.Customer", b =>
                 {
                     b.Navigation("Contactdata");
-
-                    b.Navigation("Projects");
                 });
 #pragma warning restore 612, 618
         }

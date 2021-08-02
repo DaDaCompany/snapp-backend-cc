@@ -55,11 +55,16 @@ namespace Core
         public DateTime EndDate { get; set; }
 
         /// <summary>
-        /// the customer of the project
+        /// The associated Customer of the project
         /// </summary>
         [NotMapped]
-        ICustomer IProject.ICustomer => this.Customer;
-        public Customer Customer { get; set; }
+        public IEnumerable<ICustomer> ICustomers { get; }
+        public List<Customer> Customers { get; set; }
+
+        /// <summary>
+        /// describes the id of the customer
+        /// </summary>
+        public string CustomerId { get; set; }
 
         /// <summary>
         /// the leader/responsible Person of the project

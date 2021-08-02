@@ -45,7 +45,12 @@ namespace ICore
         /// <summary>
         /// The associated Customer of the project
         /// </summary>
-        public ICustomer ICustomer { get; }
+        public IEnumerable<ICustomer> ICustomers { get; }
+
+        /// <summary>
+        /// describes the id of the customer
+        /// </summary>
+        public string CustomerId { get; }
 
         /// <summary>
         /// the leader/responsible Person of the project
