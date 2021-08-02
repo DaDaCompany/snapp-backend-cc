@@ -36,15 +36,25 @@ namespace Core
         /// The contactdata of the customer
         /// </summary>
         [NotMapped]
-        IContactdata ICustomer.IContactdata => this.Contactdata;
-        public Contactdata Contactdata { get; set; }
+        public IEnumerable<IContactdata> IContactdata => Contactdata;
+        public List<Contactdata> Contactdata { get; set; }
 
         /// <summary>
-        /// Project ID in which the article is used
+        /// The contactdataId of the customer
+        /// </summary>
+        public string ContactdataId { get; set;  }
+
+        /// <summary>
+        /// Projects of the Customer
         /// </summary>
         [NotMapped]
         IEnumerable<IProject> ICustomer.IProjects => this.Projects;
         public List<Project> Projects { get; set; } = new List<Project>();
+
+        /// <summary>
+        /// Project ID in which the article is used
+        /// </summary>
+        public string ProjectId { get; set; }
 
         //[NotMapped]
         //public IProject IProject => this.Project;

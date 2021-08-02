@@ -41,20 +41,20 @@ namespace Core
         /// the company where the user works
         /// </summary>
         [NotMapped]
-        public ICompany ICompany => Company;
+        IEnumerable<ICompany> IUser.ICompany => this.Company;
+        public List<Company> Company { get; set; } = new List<Company>();
 
-        public Company Company { get; set; }
+        /// <summary>
+        /// the id of the company where the user works
+        /// </summary>
+        public string CompanyId { get; set; }
 
         /// <summary>
         /// Projects in which the user done work
         /// </summary>
         [NotMapped]
         IEnumerable<IProject> IUser.IProjects => this.Projects;
-        public List<Project> Projects { get; set;} = new List<Project>();
-
-        //[NotMapped]
-        //public IProject IProject => Project;
-        //public Project Project { get; set; }
+        public List<Project> Projects { get; set; } = new List<Project>();
 
         #endregion
 

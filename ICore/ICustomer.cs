@@ -34,13 +34,21 @@ namespace ICore
         /// <summary>
         /// The contactdata of the customer
         /// </summary>
-        public IContactdata IContactdata { get; }
+        public IEnumerable<IContactdata> IContactdata { get; }
+        /// <summary>
+        /// The contactdataId of the customer
+        /// </summary>
+        public string ContactdataId { get;  }
 
         /// <summary>
         /// Project ID in which the article is used
         /// </summary>
         public IEnumerable<IProject> IProjects { get; }
-        //public IProject IProject { get; }
+
+        /// <summary>
+        /// Project ID in which the article is used
+        /// </summary>
+        public string ProjectId { get; }
 
         #endregion
 

@@ -23,7 +23,7 @@ namespace ICore
         /// <summary>
         /// describes the address
         /// </summary>
-        public IAddress IAddress { get; }
+        public IEnumerable<IAddress> IAddress { get; }
 
         /// <summary>
         /// describes the phonenumber
