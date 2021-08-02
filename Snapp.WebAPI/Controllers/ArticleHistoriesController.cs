@@ -93,6 +93,8 @@ namespace Snapp.WebAPI.Controllers
 
             //var proofeArticles = await _context.ArticleHistory.Where(s => s.BaseArticleId == articleHistory.BaseArticleId).ToListAsync();
 
+
+
             if (proofeArticles.Count > 0)
             {
                 foreach (var proofeArticle in proofeArticles)

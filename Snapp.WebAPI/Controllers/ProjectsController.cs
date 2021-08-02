@@ -29,7 +29,7 @@ namespace Snapp.WebAPI.Controllers
         }
 
         // GET: api/Projects/5
-        [HttpGet("getprojectbyid")]
+        [HttpGet("getprojectbyid/{id}")]
         public async Task<ActionResult<Project>> GetProject(string id)
         {
             var project = await _context.ProjectList.FindAsync(id);
