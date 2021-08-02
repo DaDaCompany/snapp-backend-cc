@@ -35,14 +35,12 @@ namespace ICore
         /// <summary>
         /// the company where the user works
         /// </summary>
-        public IEnumerable<ICompany> ICompany { get; }
-        public string CompanyId { get; }
+        public ICompany ICompany { get; }
 
         /// <summary>
-        /// Project ID in which the article is used
+        /// the id of the company where the user works
         /// </summary>
-        public IEnumerable<IProject> IProjects { get; }
-        //public IProject IProject { get; }
+        public string CompanyId { get; }
 
         #endregion
 

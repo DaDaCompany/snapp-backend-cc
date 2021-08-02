@@ -36,7 +36,7 @@ namespace ICore
         /// <summary>
         /// the customer of the project for the bill
         /// </summary>
-        public IEnumerable<ICustomer> ICustomers { get; }
+        public ICustomer ICustomer { get; }
 
         /// <summary>
         /// describes the id of the customer

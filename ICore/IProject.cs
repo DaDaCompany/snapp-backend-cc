@@ -33,6 +33,11 @@ namespace ICore
         public IBill IBill { get; }
 
         /// <summary>
+        /// The billId of the project
+        /// </summary>
+        public string BillId { get; }
+
+        /// <summary>
         /// the startdate of the project
         /// </summary>
         public DateTime StartDate { get; }
@@ -45,12 +50,7 @@ namespace ICore
         /// <summary>
         /// The associated Customer of the project
         /// </summary>
-        public IEnumerable<ICustomer> ICustomers { get; }
-
-        /// <summary>
-        /// describes the id of the customer
-        /// </summary>
-        public string CustomerId { get; }
+        public ICustomer ICustomer { get; }
 
         /// <summary>
         /// the leader/responsible Person of the project
@@ -62,11 +62,6 @@ namespace ICore
         /// </summary>
         //public IUser IUser { get; }
         public IEnumerable<IUser> IUsers { get; }
-
-        /// <summary>
-        /// the userId of the employee which done work in the project
-        /// </summary>
-        public string UserId { get; }
 
         /// <summary>
         /// the status of the project/bill
