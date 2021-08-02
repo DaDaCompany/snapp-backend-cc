@@ -35,7 +35,8 @@ namespace ICore
         /// <summary>
         /// the company where the user works
         /// </summary>
-        public ICompany ICompany { get; }
+        public IEnumerable<ICompany> ICompany { get; }
+        public string CompanyId { get; }
 
         /// <summary>
         /// Project ID in which the article is used

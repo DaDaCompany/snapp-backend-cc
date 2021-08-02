@@ -17,10 +17,28 @@ namespace Entity.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.8");
 
+            modelBuilder.Entity("CompanyUser", b =>
+                {
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("varchar(36)");
+
+                    b.Property<string>("UsersId")
+                        .HasColumnType("varchar(36)");
+
+                    b.HasKey("CompanyId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("CompanyUser");
+                });
+
             modelBuilder.Entity("Core.Address", b =>
                 {
                     b.Property<string>("Id")
                         .HasMaxLength(36)
+                        .HasColumnType("varchar(36)");
+
+                    b.Property<string>("ContactdataId")
                         .HasColumnType("varchar(36)");
 
                     b.Property<string>("Country")
@@ -36,6 +54,8 @@ namespace Entity.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ContactdataId");
 
                     b.ToTable("Addresses");
                 });
@@ -158,6 +178,9 @@ namespace Entity.Migrations
                     b.Property<int>("PaymentRidge")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("longtext");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ContactdataId");
@@ -171,7 +194,10 @@ namespace Entity.Migrations
                         .HasMaxLength(36)
                         .HasColumnType("varchar(36)");
 
-                    b.Property<string>("AddressId")
+                    b.Property<string>("AdressId")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CustomerId")
                         .HasColumnType("varchar(36)");
 
                     b.Property<string>("Email")
@@ -185,7 +211,7 @@ namespace Entity.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("Contactdatas");
                 });
@@ -197,7 +223,7 @@ namespace Entity.Migrations
                         .HasColumnType("varchar(36)");
 
                     b.Property<string>("ContactdataId")
-                        .HasColumnType("varchar(36)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Firstname")
                         .HasColumnType("longtext");
@@ -205,9 +231,10 @@ namespace Entity.Migrations
                     b.Property<string>("Lastname")
                         .HasColumnType("longtext");
 
-                    b.HasKey("Id");
+                    b.Property<string>("ProjectId")
+                        .HasColumnType("longtext");
 
-                    b.HasIndex("ContactdataId");
+                    b.HasKey("Id");
 
                     b.ToTable("Customers");
                 });
@@ -272,7 +299,7 @@ namespace Entity.Migrations
                         .HasColumnType("varchar(36)");
 
                     b.Property<string>("CompanyId")
-                        .HasColumnType("varchar(36)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Email")
                         .HasColumnType("longtext");
@@ -284,8 +311,6 @@ namespace Entity.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
 
                     b.ToTable("Users");
                 });
@@ -303,6 +328,28 @@ namespace Entity.Migrations
                     b.HasIndex("UsersId");
 
                     b.ToTable("ProjectUser");
+                });
+
+            modelBuilder.Entity("CompanyUser", b =>
+                {
+                    b.HasOne("Core.Company", null)
+                        .WithMany()
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Address", b =>
+                {
+                    b.HasOne("Core.Contactdata", null)
+                        .WithMany("Address")
+                        .HasForeignKey("ContactdataId");
                 });
 
             modelBuilder.Entity("Core.Article", b =>
@@ -332,20 +379,9 @@ namespace Entity.Migrations
 
             modelBuilder.Entity("Core.Contactdata", b =>
                 {
-                    b.HasOne("Core.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
-                    b.Navigation("Address");
-                });
-
-            modelBuilder.Entity("Core.Customer", b =>
-                {
-                    b.HasOne("Core.Contactdata", "Contactdata")
-                        .WithMany()
-                        .HasForeignKey("ContactdataId");
-
-                    b.Navigation("Contactdata");
+                    b.HasOne("Core.Customer", null)
+                        .WithMany("Contactdata")
+                        .HasForeignKey("CustomerId");
                 });
 
             modelBuilder.Entity("Core.Project", b =>
@@ -365,15 +401,6 @@ namespace Entity.Migrations
                     b.Navigation("Bill");
 
                     b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("Core.User", b =>
-                {
-                    b.HasOne("Core.Company", "Company")
-                        .WithMany("Users")
-                        .HasForeignKey("CompanyId");
-
-                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("ProjectUser", b =>
@@ -398,13 +425,15 @@ namespace Entity.Migrations
                     b.Navigation("Projects");
                 });
 
-            modelBuilder.Entity("Core.Company", b =>
+            modelBuilder.Entity("Core.Contactdata", b =>
                 {
-                    b.Navigation("Users");
+                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("Core.Customer", b =>
                 {
+                    b.Navigation("Contactdata");
+
                     b.Navigation("Projects");
                 });
 #pragma warning restore 612, 618

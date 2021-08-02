@@ -22,12 +22,19 @@ namespace Core
         [MaxLength(36)]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
+
+
         /// <summary>
-        /// the address object of the contactdata
+        /// the addressList of the contactdatas
         /// </summary>
         [NotMapped]
-        IAddress IContactdata.IAddress => this.Address;
-        public Address Address { get; set; }
+        public IEnumerable<IAddress> IAddress => this.Address;
+        public List<Address> Address { get; set; }
+
+        /// <summary>
+        /// describes the addressId
+        /// </summary>
+        public string AdressId { get; set; }
 
         /// <summary>
         /// the phonenumber of the contactdata

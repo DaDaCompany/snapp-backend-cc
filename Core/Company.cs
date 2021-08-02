@@ -52,6 +52,11 @@ namespace Core
         public List<User> Users { get; set; } = new List<User>();
 
         /// <summary>
+        /// describes the users-Ids of the company
+        /// </summary>
+        public string UserId { get; set; }
+
+        /// <summary>
         /// user from the company""
         /// </summary>
         //[NotMapped]
