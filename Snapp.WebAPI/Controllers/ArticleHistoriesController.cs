@@ -145,7 +145,7 @@ namespace Snapp.WebAPI.Controllers
 
 
         // DELETE: api/ArticleHistories/5
-        [HttpDelete("{id}")]
+        [HttpDelete("deletebyid/{id}")]
         public async Task<IActionResult> DeleteArticleHistory(string id)
         {
             var articleHistory = await _context.ArticleHistory.FindAsync(id);
