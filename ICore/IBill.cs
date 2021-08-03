@@ -21,12 +21,12 @@ namespace ICore
         /// <summary>
         /// the name of the project for the bill
         /// </summary>
-        public string Name { get; }
+        public string ProjectName { get; }
 
         /// <summary>
         /// the start date of the project
         /// </summary>
-        public DateTime StartDate { get; }
+        public DateTime CreatedAt { get; }
 
         /// <summary>
         /// the enddate of the project for the bill
@@ -41,11 +41,27 @@ namespace ICore
         /// <summary>
         /// describes the id of the customer
         /// </summary>
-        public string CustomerId { get; set; }
+        public string CustomerId { get; }
+
+        /// <summary>
+        /// the costs without taxes
+        /// </summary>
+        public double NetCost { get; }
+
+        /// <summary>
+        /// the costs with taxes
+        /// </summary>
+        public double TotalCost { get; }
 
         /// <summary>
         /// Project ID in which the article is used
         /// </summary>
+        public string ProjectId { get; }
         //public IProject IProject { get; }
+
+        /// <summary>
+        /// the number of the Bill
+        /// </summary>
+        public static int BillNumber { get; }
     }
 }

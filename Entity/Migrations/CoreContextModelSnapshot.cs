@@ -83,8 +83,8 @@ namespace Entity.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("double");
 
-                    b.Property<int>("ArticleCategory")
-                        .HasColumnType("int");
+                    b.Property<string>("ArticleCategory")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ArticleDescription")
                         .HasColumnType("longtext");
@@ -95,8 +95,8 @@ namespace Entity.Migrations
                     b.Property<double>("ArticlePricePerUnit")
                         .HasColumnType("double");
 
-                    b.Property<int>("ArticleTaxRate")
-                        .HasColumnType("int");
+                    b.Property<double>("ArticleTaxRate")
+                        .HasColumnType("double");
 
                     b.Property<string>("ArticleUnitMeasurement")
                         .HasColumnType("longtext");
@@ -121,17 +121,27 @@ namespace Entity.Migrations
                         .HasMaxLength(36)
                         .HasColumnType("varchar(36)");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("CustomerId")
                         .HasColumnType("varchar(36)");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Name")
+                    b.Property<double>("NetCost")
+                        .HasColumnType("double");
+
+                    b.Property<string>("ProjectId")
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime(6)");
+                    b.Property<string>("ProjectName")
+                        .HasColumnType("longtext");
+
+                    b.Property<double>("TotalCost")
+                        .HasColumnType("double");
 
                     b.HasKey("Id");
 
@@ -222,6 +232,9 @@ namespace Entity.Migrations
                         .HasColumnType("varchar(36)");
 
                     b.Property<string>("BillId")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("BillId1")
                         .HasColumnType("varchar(36)");
 
                     b.Property<string>("Country")
@@ -249,6 +262,7 @@ namespace Entity.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ZipCode")
@@ -258,7 +272,7 @@ namespace Entity.Migrations
 
                     b.HasIndex("ArticleHistoryId");
 
-                    b.HasIndex("BillId");
+                    b.HasIndex("BillId1");
 
                     b.HasIndex("CustomerId");
 
@@ -346,7 +360,7 @@ namespace Entity.Migrations
 
                     b.HasOne("Core.Bill", "Bill")
                         .WithMany()
-                        .HasForeignKey("BillId");
+                        .HasForeignKey("BillId1");
 
                     b.HasOne("Core.Customer", "Customer")
                         .WithMany("Projects")

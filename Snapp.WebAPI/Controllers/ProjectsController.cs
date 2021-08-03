@@ -30,7 +30,7 @@ namespace Snapp.WebAPI.Controllers
 
         // GET: api/Projects/5
         [HttpGet("getprojectbyid/{id}")]
-        public async Task<ActionResult<Project>> GetProject(string id)
+        public async Task<ActionResult<Project>> GetProjectbyId(string id)
         {
             var project = await _context.ProjectList.FindAsync(id);
 
@@ -112,6 +112,57 @@ namespace Snapp.WebAPI.Controllers
             await _context.SaveChangesAsync();
 
             return Ok("Project deleted successfully!");
+        }
+
+        [HttpPost("generatebill/{projectId}")]
+        public async Task<ActionResult<Project>> GenerateProjectBill(string projectId)
+        {
+
+
+
+            Project currentProject = GetProjectbyId(projectId).Result.Value;
+
+            List<ArticleHistory> articleList = await _context.ArticleHistory.Where(s => s.ProjectId == projectId).ToListAsync();
+
+            double netCost = 0.00;
+            double totalCost = 0.00;
+            
+            foreach (var article in articleList)
+            {
+                netCost += (article.ArticlePricePerUnit * article.Amount);
+                totalCost = (netCost *= article.ArticleTaxRate);
+            }
+
+            Bill Bill = new Bill
+            {
+                ProjectName = currentProject.Name,
+                EndDate = currentProject.EndDate,
+                Customer = currentProject.Customer,
+                CustomerId = currentProject.CustomerId,
+                NetCost = netCost,
+                TotalCost = totalCost,
+                ProjectId = currentProject.Id
+            };
+
+            _context.Bill.Add(Bill);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (ProjectExists(projectId))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return Ok("Bill generated successfully!");
         }
 
         private bool ProjectExists(string id)

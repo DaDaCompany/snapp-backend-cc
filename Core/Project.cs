@@ -35,6 +35,7 @@ namespace Core
         /// <summary>
         /// The Date when the project was updated
         /// </summary>
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime UpdatedAt { get; set; }
 
         /// <summary>
@@ -53,6 +54,7 @@ namespace Core
         /// <summary>
         /// The enddate of the project
         /// </summary>
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public DateTime EndDate { get; set; }
 
         /// <summary>
@@ -74,7 +76,7 @@ namespace Core
         /// the project status
         /// </summary>
         [NotMapped]
-        public ProjectStatusType Status { get; set; } = ProjectStatusType.Pending;
+        public string Status { get; set; } = "pending";
 
         /// <summary>
         /// The name of the street of the project location

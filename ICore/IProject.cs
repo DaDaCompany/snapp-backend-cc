@@ -66,7 +66,7 @@ namespace ICore
         /// <summary>
         /// the status of the project/bill
         /// </summary>
-        public ProjectStatusType Status { get; }
+        public string Status { get; }
 
         /// <summary>
         /// describes the street
