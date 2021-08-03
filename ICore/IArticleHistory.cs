@@ -20,7 +20,7 @@ namespace ICore
         /// <summary>
         /// the unique id of the position
         /// </summary>
-        public string Id { get; set; }
+        public string Id { get; }
 
         /// <summary>
         /// Project ID in which the article is used
@@ -61,12 +61,12 @@ namespace ICore
         /// <summary>
         /// the article catergory at the projects bill date
         /// </summary>
-        public int ArticleCategory { get; }
+        public string ArticleCategory { get; }
 
         /// <summary>
         /// the taxrate of each article when added to the project
         /// </summary>
-        public int ArticleTaxRate { get; }
+        public double ArticleTaxRate { get; }
 
         /// <summary>
         /// the amount of each article

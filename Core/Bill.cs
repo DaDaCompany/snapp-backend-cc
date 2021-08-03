@@ -21,16 +21,18 @@ namespace Core
         /// <summary>
         /// the name of the project for the bill
         /// </summary>
-        public string Name { get; set; }
+        public string ProjectName { get; set; }
 
         /// <summary>
         /// the start date of the project
         /// </summary>
-        public DateTime StartDate { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public DateTime CreatedAt { get; set; }
 
         /// <summary>
         /// the enddate of the project for the bill
         /// </summary>
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public DateTime EndDate { get; set; }
 
         /// <summary>
@@ -45,11 +47,25 @@ namespace Core
         /// </summary>
         public string CustomerId { get; set; }
 
-        ///// <summary>
-        ///// Project ID in which the article is used
-        ///// </summary>
-        //IProject IBill.IProject => this.Project;
-        //public Project Project { get; set; }
+        ///article history List for the positions (articles) on the bill 
+
+        /// <summary>
+        /// the costs without taxes
+        /// </summary>
+        public double NetCost { get; set; }
+
+        /// <summary>
+        /// the costs with taxes
+        /// </summary>
+        public double TotalCost { get; set; }
+
+        public string ProjectId { get; set; }
+
+        /// <summary>
+        /// the number of the Bill
+        /// </summary>
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public static int BillNumber { get; set; }
 
     }
 }

@@ -25,6 +25,7 @@ namespace Core
         /// <summary>
         /// path of the company-logo
         /// </summary>
+        /// [MaxLength(36)]
         public string Logo { get; set; }
 
         /// <summary>

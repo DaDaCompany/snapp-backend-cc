@@ -27,6 +27,7 @@ namespace Entity
         public DbSet<ArticleHistory> ArticleHistory { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Article> ArticleList { get; set; }
+        public DbSet<Bill> Bill { get; set; }
     }
 }
 

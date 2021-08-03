@@ -71,12 +71,12 @@ namespace Core
         /// <summary>
         /// the article catergory at the projects bill date
         /// </summary>
-        public int ArticleCategory { get; set; }
+        public string ArticleCategory { get; set; }
 
         /// <summary>
         /// the taxrate of each article when added to the project
         /// </summary>
-        public int ArticleTaxRate { get; set; }
+        public double ArticleTaxRate { get; set; }
 
         /// <summary>
         /// the amount of each article
