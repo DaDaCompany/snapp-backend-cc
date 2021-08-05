@@ -136,7 +136,7 @@ namespace Snapp.WebAPI.Controllers
             Bill Bill = new Bill
             {
                 ProjectName = currentProject.Name,
-                EndDate = currentProject.EndDate,
+                EndDate = Convert.ToDateTime(currentProject.EndDate),
                 Customer = currentProject.Customer,
                 CustomerId = currentProject.CustomerId,
                 NetCost = netCost,
