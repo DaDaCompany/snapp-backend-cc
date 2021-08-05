@@ -232,9 +232,6 @@ namespace Entity.Migrations
                         .HasColumnType("varchar(36)");
 
                     b.Property<string>("BillId")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("BillId1")
                         .HasColumnType("varchar(36)");
 
                     b.Property<string>("Country")
@@ -272,7 +269,7 @@ namespace Entity.Migrations
 
                     b.HasIndex("ArticleHistoryId");
 
-                    b.HasIndex("BillId1");
+                    b.HasIndex("BillId");
 
                     b.HasIndex("CustomerId");
 
@@ -360,7 +357,7 @@ namespace Entity.Migrations
 
                     b.HasOne("Core.Bill", "Bill")
                         .WithMany()
-                        .HasForeignKey("BillId1");
+                        .HasForeignKey("BillId");
 
                     b.HasOne("Core.Customer", "Customer")
                         .WithMany("Projects")
