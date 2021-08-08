@@ -118,8 +118,6 @@ namespace Snapp.WebAPI.Controllers
         public async Task<ActionResult<Project>> GenerateProjectBill(string projectId)
         {
 
-
-
             Project currentProject = GetProjectbyId(projectId).Result.Value;
 
             List<ArticleHistory> articleList = await _context.ArticleHistory.Where(s => s.ProjectId == projectId).ToListAsync();
@@ -141,8 +139,9 @@ namespace Snapp.WebAPI.Controllers
                 CustomerId = currentProject.CustomerId,
                 NetCost = netCost,
                 TotalCost = totalCost,
-                ProjectId = currentProject.Id
-            };
+                ProjectId = currentProject.Id,
+                Articles = articleList,
+        };
 
             _context.Bill.Add(Bill);
 

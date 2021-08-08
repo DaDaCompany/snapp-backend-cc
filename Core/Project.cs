@@ -37,11 +37,14 @@ namespace Core
         /// </summary>
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime UpdatedAt { get; set; }
-      
-        public string BillId { get; set; }
 
         /// <summary>
         /// the id of the associated bill
+        /// </summary>
+        public string BillId { get; set; }
+
+        /// <summary>
+        /// the associated bill
         /// </summary>
         [NotMapped]
         public IBill IBill => Bill;

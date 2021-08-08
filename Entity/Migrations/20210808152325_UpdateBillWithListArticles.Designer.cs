@@ -3,14 +3,16 @@ using System;
 using Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Entity.Migrations
 {
     [DbContext(typeof(CoreContext))]
-    partial class CoreContextModelSnapshot : ModelSnapshot
+    [Migration("20210808152325_UpdateBillWithListArticles")]
+    partial class UpdateBillWithListArticles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -320,11 +322,9 @@ namespace Entity.Migrations
 
             modelBuilder.Entity("Core.ArticleHistory", b =>
                 {
-                    b.HasOne("Core.Bill", "Bill")
+                    b.HasOne("Core.Bill", null)
                         .WithMany("Articles")
                         .HasForeignKey("BillId");
-
-                    b.Navigation("Bill");
                 });
 
             modelBuilder.Entity("Core.Bill", b =>

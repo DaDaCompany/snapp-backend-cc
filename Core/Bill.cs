@@ -67,5 +67,12 @@ namespace Core
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public static int BillNumber { get; set; }
 
+        ///// <summary>
+        ///// added articles in project
+        ///// </summary>
+        [NotMapped]
+        IEnumerable<IArticleHistory> IBill.IArticles => this.Articles;
+
+        public virtual List<ArticleHistory> Articles { get; set; } = new List<ArticleHistory>();
     }
 }
