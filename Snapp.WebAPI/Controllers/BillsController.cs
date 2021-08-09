@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Core;
 using Entity;
+using System.Text.Json;
 
 namespace Snapp.WebAPI.Controllers
 {
@@ -34,12 +35,44 @@ namespace Snapp.WebAPI.Controllers
         {
             var bill = await _context.Bill.FindAsync(id);
 
-            if (bill == null)
+
+            //if (bill == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //return bill;
+
+            var billAsJson = JsonSerializer.Serialize(bill);
+
+            
+
+            try
             {
-                return NotFound();
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (BillExists(id))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            return bill;
+            return Ok(billAsJson);
+
+
+        }
+
+        // GET: api/Bills/5
+        [HttpGet("getbyprojectid/{id}")]
+        public async Task<ActionResult<List<Bill>>> GetBillByProjectId(string id)
+        {
+            return await _context.Bill.Where(s => s.ProjectId == id).ToListAsync();
         }
 
         // PUT: api/Bills/5
