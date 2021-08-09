@@ -88,6 +88,15 @@ namespace Core
         /// </summary>
         public double Discount { get; set; }
 
+        /// <summary>
+        /// the id of the associated bill
+        /// </summary>
+        [NotMapped]
+        public virtual IBill IBill => Bill;
+
+        public virtual Bill Bill { get; set; }
+
+
         #endregion
 
         #region Private Properties

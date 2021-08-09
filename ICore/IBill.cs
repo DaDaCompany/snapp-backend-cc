@@ -63,5 +63,11 @@ namespace ICore
         /// the number of the Bill
         /// </summary>
         public static int BillNumber { get; }
+
+        /// <summary>
+        /// added articles in project
+        /// </summary>
+        public IEnumerable<IArticleHistory> IArticles { get; }
+
     }
 }

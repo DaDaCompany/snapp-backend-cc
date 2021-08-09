@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Core;
 using Entity;
+using System.Text.Json;
 
 namespace Snapp.WebAPI.Controllers
 {
@@ -15,10 +16,14 @@ namespace Snapp.WebAPI.Controllers
     public class ProjectsController : ControllerBase
     {
         private readonly CoreContext _context;
+        private BillsController _BillsController;
 
         public ProjectsController(CoreContext context)
         {
             _context = context;
+
+            _BillsController = new BillsController(context);
+
         }
 
         // GET: api/Projects
@@ -114,23 +119,22 @@ namespace Snapp.WebAPI.Controllers
             return Ok("Project deleted successfully!");
         }
 
-        [HttpPost("generatebill/{projectId}")]
-        public async Task<ActionResult<Project>> GenerateProjectBill(string projectId)
+        // Genearte Bill with ProjectID
+        [HttpPost("generatebill/{id}")]
+        public async Task<ActionResult<Project>> GenerateProjectBill(string id)
         {
 
+            Project currentProject = GetProjectbyId(id).Result.Value;
 
-
-            Project currentProject = GetProjectbyId(projectId).Result.Value;
-
-            List<ArticleHistory> articleList = await _context.ArticleHistory.Where(s => s.ProjectId == projectId).ToListAsync();
+            List<ArticleHistory> articleList = await _context.ArticleHistory.Where(s => s.ProjectId == id).ToListAsync();
 
             double netCost = 0.00;
             double totalCost = 0.00;
-            
+
             foreach (var article in articleList)
             {
                 netCost += (article.ArticlePricePerUnit * article.Amount);
-                totalCost = (netCost *= article.ArticleTaxRate);
+                totalCost += (article.ArticlePricePerUnit * article.Amount * article.ArticleTaxRate);
             }
 
             Bill Bill = new Bill
@@ -141,7 +145,8 @@ namespace Snapp.WebAPI.Controllers
                 CustomerId = currentProject.CustomerId,
                 NetCost = netCost,
                 TotalCost = totalCost,
-                ProjectId = currentProject.Id
+                ProjectId = currentProject.Id,
+                Articles = articleList,
             };
 
             _context.Bill.Add(Bill);
@@ -152,7 +157,7 @@ namespace Snapp.WebAPI.Controllers
             }
             catch (DbUpdateException)
             {
-                if (ProjectExists(projectId))
+                if (ProjectExists(id))
                 {
                     return Conflict();
                 }
@@ -162,9 +167,10 @@ namespace Snapp.WebAPI.Controllers
                 }
             }
 
-            return Ok("Bill generated successfully!");
+            return Ok(Bill);
         }
 
+        //Check project exists
         private bool ProjectExists(string id)
         {
             return _context.ProjectList.Any(e => e.Id == id);
